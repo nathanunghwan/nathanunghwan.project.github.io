@@ -1,0 +1,241 @@
+<!doctype html>
+<html>
+<head>
+    <link href="/static/style.css" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        function cb(selection) {
+            $.getJSON({
+                url: "/callback", data: { 'data': selection }, success: function (result) {
+                    Plotly.newPlot('chart', result, {staticPlot: true});;
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+        {% for key, value in data.items() %}
+				{% if value is string %}
+					['{{ key }}', '{{ value }}'],
+				{% else %}
+					['{{ key }}', {{ value }}],
+				{% endif %}
+			{% endfor %}
+        ]);
+
+        var options = {
+          title: 'Contribution (percentage of GDP) to global debt',
+          is3D: true,
+          pieSliceText: 'none'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+    </script>
+</head>
+
+<body style="font-family:arial, sans-serif">
+    <!-- Map -->
+    <h1 style ="text-align:center;">Global Debt</h1>
+    <div id="WorldMap"></div>
+    <script src="/static/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/StephanWagner/svgMap@v2.7.2/dist/svgMap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/gh/StephanWagner/svgMap@v2.7.2/dist/svgMap.min.css" rel="stylesheet">
+    <script>
+        var svgMapDataGDP = {
+            data: {
+                gdp: {
+                    name: 'Percent of GDP',
+                    format: '{0}',
+                    thousandSeparator: '',
+                    thresholdMax: 1000,
+                    thresholdMin: 1
+                },
+                changeAdjusted: {
+                    name: 'Year',
+                    format: '2021'
+                }
+            },
+            applyData: 'gdp',
+            values: {
+                AF:{ gdp:0,changeAdjusted:0},
+                AL:{ gdp:38.48934577,changeAdjusted:0},
+                DZ:{ gdp:24.93544522,changeAdjusted:0},
+                AR:{ gdp:22.88875675,changeAdjusted:0},
+                AU:{ gdp:184.7233262,changeAdjusted:0},
+                AT:{ gdp:152.7832285,changeAdjusted:0},
+                AZ:{ gdp:33.37301625,changeAdjusted:0},
+                BH:{ gdp:103.0011798,changeAdjusted:0},
+                BD:{ gdp:38.2671638,changeAdjusted:0},
+                BB:{ gdp:168.2562855,changeAdjusted:0},
+                BE:{ gdp:212.7592576,changeAdjusted:0},
+                BJ:{ gdp:15.32355654,changeAdjusted:0},
+                BT:{ gdp:73.77073431,changeAdjusted:0},
+                BW:{ gdp:38.00695085,changeAdjusted:0},
+                BR:{ gdp:88.12506265,changeAdjusted:0},
+                BG:{ gdp:97.49451884,changeAdjusted:0},
+                BF:{ gdp:30.36247192,changeAdjusted:0},
+                BI:{ gdp:34.19911694,changeAdjusted:0},
+                KH:{ gdp:167.3551177,changeAdjusted:0},
+                CM:{ gdp:0,changeAdjusted:0},
+                CA:{ gdp:230.4898784,changeAdjusted:0},
+                CF:{ gdp:0,changeAdjusted:0},
+                TD:{ gdp:0,changeAdjusted:0},
+                CL:{ gdp:146.680062,changeAdjusted:0},
+                CN:{ gdp:193.5898035,changeAdjusted:0},
+                CO:{ gdp:65.05135229,changeAdjusted:0},
+                KM:{ gdp:15.08306007,changeAdjusted:0},
+                CR:{ gdp:63.00652333,changeAdjusted:0},
+                HR:{ gdp:119.3887229,changeAdjusted:0},
+                CY:{ gdp:255.8284905,changeAdjusted:0},
+                CZ:{ gdp:85.93556313,changeAdjusted:0},
+                DK:{ gdp:231.6619792,changeAdjusted:0},
+                DJ:{ gdp:18.7098728,changeAdjusted:0},
+                DM:{ gdp:51.77555001,changeAdjusted:0},
+                DO:{ gdp:31.78434551,changeAdjusted:0},
+                EC:{ gdp:53.56488717,changeAdjusted:0},
+                EG:{ gdp:28.14788051,changeAdjusted:0},
+                SV:{ gdp:58.87570513,changeAdjusted:0},
+                ER:{ gdp:0,changeAdjusted:0},
+                EE:{ gdp:113.2564497,changeAdjusted:0},
+                ET:{ gdp:19.59369152,changeAdjusted:0},
+                FI:{ gdp:183.9972,changeAdjusted:0},
+                FR:{ gdp:232.7639722,changeAdjusted:0},
+                GE:{ gdp:78.93862087,changeAdjusted:0},
+                DE:{ gdp:129.021198,changeAdjusted:0},
+                GH:{ gdp:10.25154108,changeAdjusted:0},
+                GR:{ gdp:121.0665646,changeAdjusted:0},
+                GD:{ gdp:57.61169377,changeAdjusted:0},
+                GT:{ gdp:41.53415597,changeAdjusted:0},
+                GN:{ gdp:8.924638372,changeAdjusted:0},
+                GW:{ gdp:14.7818888,changeAdjusted:0},
+                GY:{ gdp:20.85076844,changeAdjusted:0},
+                HT:{ gdp:8.010298922,changeAdjusted:0},
+                HN:{ gdp:64.27330635,changeAdjusted:0},
+                HU:{ gdp:94.80405514,changeAdjusted:0},
+                IS:{ gdp:203.4360926,changeAdjusted:0},
+                IN:{ gdp:85.54682302,changeAdjusted:0},
+                ID:{ gdp:40.33951332,changeAdjusted:0},
+                IQ:{ gdp:10.08555706,changeAdjusted:0},
+                IE:{ gdp:195.3439382,changeAdjusted:0},
+                IL:{ gdp:115.2057808,changeAdjusted:0},
+                IT:{ gdp:116.4610363,changeAdjusted:0},
+                JM:{ gdp:75.46646763,changeAdjusted:0},
+                JP:{ gdp:187.0928427,changeAdjusted:0},
+                JO:{ gdp:93.82274653,changeAdjusted:0},
+                KZ:{ gdp:37.36625988,changeAdjusted:0},
+                KE:{ gdp:30.15811063,changeAdjusted:0},
+                KW:{ gdp:0,changeAdjusted:0},
+                LV:{ gdp:67.46989565,changeAdjusted:0},
+                LB:{ gdp:0,changeAdjusted:0},
+                LS:{ gdp:21.44258503,changeAdjusted:0},
+                LR:{ gdp:0,changeAdjusted:0},
+                LT:{ gdp:64.48176429,changeAdjusted:0},
+                LU:{ gdp:385.4351518,changeAdjusted:0},
+                MG:{ gdp:17.86717281,changeAdjusted:0},
+                MW:{ gdp:0,changeAdjusted:0},
+                MY:{ gdp:150.6841007,changeAdjusted:0},
+                MV:{ gdp:34.91161496,changeAdjusted:0},
+                ML:{ gdp:28.45681002,changeAdjusted:0},
+                MT:{ gdp:216.7768884,changeAdjusted:0},
+                MR:{ gdp:0,changeAdjusted:0},
+                MU:{ gdp:85.46,changeAdjusted:0},
+                MX:{ gdp:40.99797848,changeAdjusted:0},
+                MD:{ gdp:23.1859833,changeAdjusted:0},
+                MN:{ gdp:75.16354371,changeAdjusted:0},
+                MA:{ gdp:66.51627437,changeAdjusted:0},
+                MZ:{ gdp:22.39323954,changeAdjusted:0},
+                MM:{ gdp:0,changeAdjusted:0},
+                NP:{ gdp:105.0820515,changeAdjusted:0},
+                NL:{ gdp:247.7303832,changeAdjusted:0},
+                NZ:{ gdp:171.5321227,changeAdjusted:0},
+                NI:{ gdp:25.7850756,changeAdjusted:0},
+                NE:{ gdp:12.66624432,changeAdjusted:0},
+                NG:{ gdp:11.91626827,changeAdjusted:0},
+                NO:{ gdp:238.3103048,changeAdjusted:0},
+                OM:{ gdp:93.02529615,changeAdjusted:0},
+                PK:{ gdp:23.49263545,changeAdjusted:0},
+                PG:{ gdp:13.65340303,changeAdjusted:0},
+                PY:{ gdp:53.54792889,changeAdjusted:0},
+                PE:{ gdp:62.56822716,changeAdjusted:0},
+                PH:{ gdp:62.43459784,changeAdjusted:0},
+                PL:{ gdp:76.12199784,changeAdjusted:0},
+                PT:{ gdp:172.1230199,changeAdjusted:0},
+                QA:{ gdp:142.0705655,changeAdjusted:0},
+                RO:{ gdp:27.17308757,changeAdjusted:0},
+                RU:{ gdp:101.6024043,changeAdjusted:0},
+                RW:{ gdp:25.06396641,changeAdjusted:0},
+                LC:{ gdp:69.53821724,changeAdjusted:0},
+                VC:{ gdp:46.64996599,changeAdjusted:0},
+                WS:{ gdp:53.74173733,changeAdjusted:0},
+                SA:{ gdp:76.99595292,changeAdjusted:0},
+                SN:{ gdp:28.83690189,changeAdjusted:0},
+                RS:{ gdp:53.26207054,changeAdjusted:0},
+                SL:{ gdp:7.090160146,changeAdjusted:0},
+                SG:{ gdp:219.8591587,changeAdjusted:0},
+                SK:{ gdp:102.1463593,changeAdjusted:0},
+                SI:{ gdp:72.52131374,changeAdjusted:0},
+                SB:{ gdp:19.78464884,changeAdjusted:0},
+                ZA:{ gdp:66.2370446,changeAdjusted:0},
+                SS:{ gdp:1.589805432,changeAdjusted:0},
+                ES:{ gdp:162.4068617,changeAdjusted:0},
+                LK:{ gdp:0,changeAdjusted:0},
+                SD:{ gdp:5.897457339,changeAdjusted:0},
+                SE:{ gdp:247.7141487,changeAdjusted:0},
+                CH:{ gdp:275.1013148,changeAdjusted:0},
+                ST:{ gdp:0,changeAdjusted:0},
+                TJ:{ gdp:9.591824238,changeAdjusted:0},
+                TZ:{ gdp:0,changeAdjusted:0},
+                TH:{ gdp:179.6072359,changeAdjusted:0},
+                TL:{ gdp:17.76699561,changeAdjusted:0},
+                TG:{ gdp:26.42555944,changeAdjusted:0},
+                TO:{ gdp:39.86411607,changeAdjusted:0},
+                TT:{ gdp:63.60878382,changeAdjusted:0},
+                TR:{ gdp:88.98853754,changeAdjusted:0},
+                UG:{ gdp:12.85368555,changeAdjusted:0},
+                UA:{ gdp:44.5451506,changeAdjusted:0},
+                AE:{ gdp:105.2305095,changeAdjusted:0},
+                GB:{ gdp:157.8034867,changeAdjusted:0},
+                US:{ gdp:159.1236331,changeAdjusted:0},
+                UY:{ gdp:33.41964883,changeAdjusted:0},
+                VU:{ gdp:59.50219175,changeAdjusted:0},
+                VN:{ gdp:125.5979913,changeAdjusted:0},
+                YE:{ gdp:0,changeAdjusted:0},
+                ZM:{ gdp:8.75028053,changeAdjusted:0},
+                ZW:{ gdp:0,changeAdjusted:0},
+                link: 'https://cssscript.com',
+                linkTarget: '_blank'
+            }
+        };
+
+        new svgMap({
+            targetElementID: 'WorldMap',
+            data: svgMapDataGDP,
+           
+        });
+    </script>
+    <h1 style ="text-align:center;">Private debt, loans and debt securities (percent of GDP)</h1>
+    <h2 style ="text-align:center;">Choose your country</h2>
+    <p style ="text-align:center;"> Make sure you spell it correctly with capital letter(s), e.g. United Kingdom</p>
+    <div style="text-align:center;">
+    <input type="text" id="fname" name="fname" onchange="cb(this.value)">
+    </div>
+    <div id="chart" class="chart"></div>
+
+    <div id="piechart_3d" style="height: 1000px; width: 1500px; margin: 0 auto;"></div>
+</body>
+
+<script>
+    d = {{ graphJSON | safe }};
+    //d.config={staticPlot: true};
+    Plotly.newPlot('chart', d, {});
+    
+</script>
+</html>

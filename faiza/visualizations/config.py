@@ -1,0 +1,1 @@
+fredapi_key = "e03228456031c3b9a13920b3df632d2f"

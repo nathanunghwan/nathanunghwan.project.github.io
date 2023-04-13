@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Basic Charts</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        h1 {text-align: center;}
+        p {text-align: center;}
+        div {text-align: center;}
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+        .centerr {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 30%;
+            margin-top: 100px;
+        }
+        #plot {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .map {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .map #plot {
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <img src="canadaus5.jpg" height="200" width="400" class="centerr">
+                <h1>Canada GDP Ratio vs United States GDP Ratio</h1>
+                <div class="map">
+                    <div id="plot"></div>
+                </div>
+                    <script src="plot.js"></script>
+                
+            </div>    
+        </div>
+    </div>    
+</body>
+</html>

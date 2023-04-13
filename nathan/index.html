@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Gauge Chart Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/@antv/g2plot@2.3.1/build/g2plot.min.js"></script>
+    <script src='https://cdn.plot.ly/plotly-2.20.0.min.js'></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin="" />
+  ​
+    <!-- Leaflet JavaScript code -->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+      integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+      crossorigin=""></script> 
+  ​
+    <!-- D3 Library -->
+    <script src="https://d3js.org/d3.v5.min.js"></script> 
+  ​
+    <!-- Our CSS -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <style>
+      #map { height: 800px; width: 100%;}
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"
+          integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+          crossorigin=""></script>
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 jumbotron text-center" style="background-image: url(https://thumbs.dreamstime.com/b/debt-to-gdp-ratio-concept-large-stone-text-wooden-cubes-letters-bag-seesaw-172410962.jpg); background-size: cover; height: 500px;">
+          <h1 style="color: white;">Household debt, loans and debt securities per GDP</h1>
+          
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="dept">
+            <h5 style="text-align: center; font-size: 35px; font-weight: bold;">Household debt, loans and debt securities per GDP Map</h5>
+          </div>
+          <div id="map"></div>  
+        </div>    
+      </div>
+      
+      
+      <div class="row">    
+
+        <div class="col-md-8">
+          <div id="guage"></div>
+        </div>
+        <div class="col-md-4">
+          <div class="well">
+            <Country style="text-align: center; font-size: 24px; font-weight: bold;">Country</h6>
+            <br> </br>
+            <select id="country-select" onchange="optionChanged(this.value)"></select>
+          </div>
+        </div> 
+      </div>  
+      <!-- <div class="row">    -->
+      <div id="chart-container"></div>
+      <div id="line-container"></div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="app.js"></script>
+</html>

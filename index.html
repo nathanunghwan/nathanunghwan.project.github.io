@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Combined Webpage</title>
+    <style>
+      iframe {
+        height: 100%;
+        width: 100%;
+        border: none;
+        overflow: hidden;
+      }
+    </style>
+    <script>
+      function resizeIframe(iframe) {
+        iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+      }
+    </script>
+  </head>
+  <br>
+    <iframe src="nathan/index.html" onload="resizeIframe(this)"></iframe>
+    <br></br>
+    <iframe src="faiza/visualizations/project_data/templates/index.html" onload="resizeIframe(this)"></iframe>
+
+  </body>
+</html>
+ <!-- the home.html requires the app.py flask file in order to run
+will need to pip3 install flask, pandas, and plotly as well (python3 -m flask run) -->
